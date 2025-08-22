@@ -1,5 +1,4 @@
 import { pgTable, text, integer, real, timestamp, boolean, uuid, pgEnum, primaryKey } from 'drizzle-orm/pg-core';
-import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 
 // Status enum for keywords
 export const keywordStatusEnum = pgEnum('keyword_status', [
@@ -120,22 +119,7 @@ export const securityLogs = pgTable('security_logs', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
 });
 
-export const insertPlanSchema = createInsertSchema(plans);
-export const selectPlanSchema = createSelectSchema(plans);
-export const insertUserSchema = createInsertSchema(users);
-export const selectUserSchema = createSelectSchema(users);
-export const insertProjectSchema = createInsertSchema(projects);
-export const selectProjectSchema = createSelectSchema(projects);
-export const insertKeywordSchema = createInsertSchema(keywords);
-export const selectKeywordSchema = createSelectSchema(keywords);
-export const insertRankingSchema = createInsertSchema(rankings);
-export const selectRankingSchema = createSelectSchema(rankings);
-export const insertPasswordResetCodeSchema = createInsertSchema(passwordResetCodes);
-export const selectPasswordResetCodeSchema = createSelectSchema(passwordResetCodes);
-export const insertRateLimitSchema = createInsertSchema(rateLimits);
-export const selectRateLimitSchema = createSelectSchema(rateLimits);
-export const insertSecurityLogSchema = createInsertSchema(securityLogs);
-export const selectSecurityLogSchema = createSelectSchema(securityLogs);
+// Schemas removidos temporariamente para evitar problemas de build
 
 // Auth.js tables (imported from auth-schema.ts for Drizzle adapter)
 export const authUsers = pgTable('auth_users', {
@@ -186,16 +170,4 @@ export const verificationTokens = pgTable('verification_tokens', {
   })
 }));
 
-// Auth.js schemas
-export const insertAuthUserSchema = createInsertSchema(authUsers);
-export const selectAuthUserSchema = createSelectSchema(authUsers);
-export const insertAccountSchema = createInsertSchema(accounts);
-export const selectAccountSchema = createSelectSchema(accounts);
-export const insertSessionSchema = createInsertSchema(sessions);
-export const selectSessionSchema = createSelectSchema(sessions);
-export const insertVerificationTokenSchema = createInsertSchema(verificationTokens);
-export const selectVerificationTokenSchema = createSelectSchema(verificationTokens);
-
-// Keep old schemas as aliases
-export const insertPasswordResetTokenSchema = insertPasswordResetCodeSchema;
-export const selectPasswordResetTokenSchema = selectPasswordResetCodeSchema;
+// Auth.js schemas removidos temporariamente

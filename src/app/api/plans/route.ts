@@ -1,15 +1,33 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/db';
-import { plans } from '@/lib/schema';
 
 export async function GET() {
   try {
-    const allPlans = await db.select().from(plans);
+    // Dados mock enquanto corrigimos conexão com banco
+    const mockPlans = [
+      {
+        id: '1',
+        name: 'starter',
+        displayName: 'Plano Starter',
+        maxProjects: 1,
+        maxKeywords: 10,
+        price: 29.90,
+        active: true
+      },
+      {
+        id: '2', 
+        name: 'pro',
+        displayName: 'Plano Pro',
+        maxProjects: 5,
+        maxKeywords: 100,
+        price: 99.90,
+        active: true
+      }
+    ];
     
     return NextResponse.json({
       success: true,
-      data: allPlans,
-      message: 'Planos obtidos com sucesso'
+      data: mockPlans,
+      message: 'Planos obtidos com sucesso (dados mock)'
     });
   } catch (error) {
     console.error('Erro ao buscar planos:', error);
